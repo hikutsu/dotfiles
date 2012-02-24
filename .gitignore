@@ -1,0 +1,15 @@
+# vim
+.swo
+.swp
+.vim/bundle/
+# sass
+.sass-cache
+.vim/bundle/VimExplorer
+.vim/bundle/YankRing.vim
+.vim/bundle/matchit.zip
+.vim/bundle/surround.vim
+.vim/bundle/textile.vim
+.vim/bundle/unite.vim
+.vim/bundle/vim-css3-syntax
+.vim/bundle/vim-project
+.vim/bundle/vim-quickrun

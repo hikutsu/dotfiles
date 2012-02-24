@@ -1,0 +1,17 @@
+[user]
+	name = Shingo Katsushima
+	email = skatsushima@aiming-inc.com
+[color]
+	ui = auto
+[core]
+	excludesfile = ~/.gitignore
+	editor = vim #-c \"set fenc=utf-8\"
+[alias]
+  co = checkout
+  st = status
+  la = log --oneline --decorate --all --graph
+
+#gerit
+  topic = "!sh -c 'git checkout -b $1 master' __dummy__"
+  current-branch = "!sh -c \"git branch | grep '*' | awk '{ print \\$2 }' \""
+  pfr = "!sh -c 'git push origin HEAD:refs/for/master/`git current-branch`'"
