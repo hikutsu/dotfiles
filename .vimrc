@@ -1,5 +1,5 @@
 syntax on
-filetype on
+filetype off
 filetype indent on
 filetype plugin on
 
@@ -69,8 +69,10 @@ command! -nargs=* Snip NeoComplCacheEditSnippets
 " 無名レジスタに入るデータを、*レジスタにも入れる。
 set clipboard+=unnamed
 
+set nocompatible
+
 " Vundle
-set rtp+=~/.vim/vundle.git/
+set rtp+=~/dotfiles/.vim/vundle.git/
 call vundle#rc()
 
 " Syntax
@@ -91,6 +93,8 @@ Bundle 'matchit.zip'
 Bundle 'http://github.com/scrooloose/nerdcommenter.git'
 Bundle 'surround.vim'
 Bundle 'unite.vim'
+
+filetype plugin indent on
 
 " キーマップリーダー
 let mapleader = ","
