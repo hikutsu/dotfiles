@@ -1,8 +1,10 @@
+" General
 syntax on
-filetype off
+filetype on
 filetype indent on
 filetype plugin on
 
+" MacVim
 if has('gui_macvim')
 	set transparency=10
 	set guifont=Osaka-Mono:h14
@@ -69,10 +71,11 @@ command! -nargs=* Snip NeoComplCacheEditSnippets
 " 無名レジスタに入るデータを、*レジスタにも入れる。
 set clipboard+=unnamed
 
-set nocompatible
+" Turn on when Vundle install
+" set nocompatible
 
 " Vundle
-set rtp+=~/dotfiles/.vim/vundle.git/
+set rtp+=~/dotfiles/.vim/vundle.git
 call vundle#rc()
 
 " Syntax
