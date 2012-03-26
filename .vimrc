@@ -72,10 +72,10 @@ command! -nargs=* Snip NeoComplCacheEditSnippets
 set clipboard+=unnamed
 
 " Turn on when Vundle install
-" set nocompatible
+set nocompatible
 
 " Vundle
-set rtp+=~/dotfiles/.vim/vundle.git
+set rtp+=~/dotfiles/.vim/bundle/vundle/
 call vundle#rc()
 
 " Syntax
