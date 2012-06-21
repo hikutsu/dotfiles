@@ -17,3 +17,5 @@ alias svngaiaco="svn checkout https://svn.aiming-inc.biz/gaia"
 
 # Corporate-sitte
 alias cpcorp="cp ~/Documents/working/sources/www/corporate-site/themes/aiming-inc/ ."
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

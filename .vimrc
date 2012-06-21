@@ -1,3 +1,35 @@
+" Vundle
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" syntax
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'jQuery'
+Bundle 'Markdown'
+Bundle 'https://github.com/timcharper/textile.vim.git'
+Bundle 'http://github.com/othree/html5-syntax.vim'
+
+" Plugins
+Bundle 'VimExplorer'
+Bundle 'shemerey/vim-project'
+Bundle 'YankRing.vim'
+Bundle 'http://github.com/thinca/vim-poslist.git'
+Bundle 'http://github.com/thinca/vim-quickrun.git'
+Bundle 'http://github.com/Shougo/neocomplcache.git'
+Bundle 'matchit.zip'
+Bundle 'http://github.com/scrooloose/nerdcommenter.git'
+Bundle 'surround.vim'
+Bundle 'unite.vim'
+
+filetype plugin indent on
+
 " General
 syntax on
 filetype on
@@ -59,45 +91,21 @@ match WhitespaceEOL /\s\+$/
 set noswapfile
 " バックアップを作成しない
 set nobackup
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1 " 起動時に有効化
-" スニペットファイルの置き場所
-let g:NeoComplCache_SnippetsDir = '~/.vim/snippets'
-" TABでスニペットを展開
-imap <expr> <TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" :\<Tab>"
+
+" neocomplcache.vim
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_auto_completion_start_length = 2
+let g:neocomplcache_min_syntax_length = 2
+let g:neocomplcache_min_keyword_length = 2
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_underbar_completion = 1
+
 " スニペット編集 引数にfiletype
-command! -nargs=* Snip NeoComplCacheEditSnippets
+" command! -nargs=* Snip NeoComplCacheEditSnippets
 
 " 無名レジスタに入るデータを、*レジスタにも入れる。
-set clipboard+=unnamed
+set clipboard=unnamed
 
-" Turn on when Vundle install
-set nocompatible
-
-" Vundle
-set rtp+=~/dotfiles/.vim/bundle/vundle/
-call vundle#rc()
-
-" Syntax
-Bundle 'hail2u/vim-css3-syntax'
-Bundle "jQuery"
-Bundle "Markdown"
-Bundle "https://github.com/timcharper/textile.vim.git"
-Bundle "http://github.com/othree/html5-syntax.vim"
-
-" Plugins
-Bundle 'VimExplorer'
-Bundle 'shemerey/vim-project'
-Bundle "YankRing.vim"
-Bundle "http://github.com/thinca/vim-poslist.git"
-Bundle "http://github.com/thinca/vim-quickrun.git"
-Bundle 'Shougo/neocomplcache'
-Bundle 'matchit.zip'
-Bundle 'http://github.com/scrooloose/nerdcommenter.git'
-Bundle 'surround.vim'
-Bundle 'unite.vim'
-
-filetype plugin indent on
 
 " キーマップリーダー
 let mapleader = ","

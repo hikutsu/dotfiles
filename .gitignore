@@ -1,6 +1,6 @@
 # vim
-.swo
-.swp
 .vim/bundle/*
+refs/*
+.DS_Store
 # sass
 .sass-cache/
