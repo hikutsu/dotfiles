@@ -15,3 +15,9 @@
   topic = "!sh -c 'git checkout -b $1 master' __dummy__"
   current-branch = "!sh -c \"git branch | grep '*' | awk '{ print \\$2 }' \""
   pfr = "!sh -c 'git push origin HEAD:refs/for/master/`git current-branch`'"
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

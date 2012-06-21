@@ -2,6 +2,9 @@
 autoload -U compinit
 compinit
 
+# 256色
+export TERM=xterm-256color
+
 # 文字コードの設定
 export LANG=ja_JP.UTF-8
 
