@@ -1,4 +1,5 @@
 # 補完機能有効
+fpath=($HOME/.zsh/completion ${fpath})
 autoload -U compinit
 compinit
 
@@ -9,11 +10,17 @@ export TERM=xterm-256color
 export LANG=ja_JP.UTF-8
 
 # パスの設定
-PATH=~/bin:/usr/local/bin:$PATH
+PATH=$HOME/bin:/usr/local/bin:$PATH
 export MANPATH=/usr/local/share/man:/usr/local/man:/usr/share/man
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 
-#vim
+# nodebrew PATH
+if [ -d $HOME/.nodebrew ]; then
+  export PATH=$HOME/.nodebrew/current/bin:$PATH
+  export NODE_PATH=$HOME/.nodebrew/current/lib/node_modules
+fi
+
+# vim
 if [ -d /Applications/MacVim.app ]; then
   export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
   alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
@@ -24,7 +31,7 @@ fi
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
 
 # vi風キーバインド
-bindkey -v
+# bindkey -v
 
 # エイリアスの設定
 alias ls='ls --color=auto'
@@ -32,6 +39,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias lal="ls -l -A"
 alias vi='vim'
+alias r='rails'
 alias g='git'
 alias s='git status'
 alias server='ruby ~/dotfiles/tools/server.rb'
@@ -45,6 +53,17 @@ fi
 if [ -d /usr/local/Cellar/screen ]; then
   alias screen="`brew --prefix`/bin/screen"
 fi
+
+# tmux on Mac
+tmuxx () {
+  if [[ ( $OSTYPE == darwin* ) && ( -x $(which reattach-to-user-namespace 2>/dev/null) ) ]]; then
+    tweaked_config=$(cat $HOME/.tmux.conf <(echo 'set-option -g default-command "reattach-to-user-namespace -l $SHELL"'))
+    tmux -f <(echo "$tweaked_config") $*
+  else
+    tmux $*
+  fi
+}
+alias tmux='tmuxx'
 
 # zmv
 autoload zmv
@@ -83,32 +102,41 @@ alias ex='extract'
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '[%b]'
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
+ZSHFG=`expr $RANDOM / 128`
+
 precmd () {
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info
+  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+
+  if [ $ZSHFG -ge 250 ]
+  then
+    ZSHFG=0
+  fi
+
+  ZSHFG=`expr $ZSHFG + 10`
+  RPROMPT="%1(v|%F{$ZSHFG}%1v%f|)"
 }
 
 case ${UID} in
 0)
-    PROMPT="%B%{[31m%}%/#%{[m%}%b "
-    PROMPT2="%B%{[31m%}%_#%{[m%}%b "
-    SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%{[m%}%b "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-    ;;
+  PROMPT="%B%{[31m%}%/#%{[m%}%b "
+  PROMPT2="%B%{[31m%}%_#%{[m%}%b "
+  SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%{[m%}%b "
+  [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+      PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+  ;;
 *)
-    PROMPT="%{[31m%}%/%%%{[m%} "
-    PROMPT2="%{[31m%}%_%%%{[m%} "
-    SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-    ;;
+  PROMPT="%{[31m%}%/%%%{[m%} "
+  PROMPT2="%{[31m%}%_%%%{[m%} "
+  SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
+  [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+      PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+  ;;
 esac
-RPROMPT="%1(v|%F{green}%1v%f|)"
 
 # 補完設定
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
@@ -125,7 +153,7 @@ setopt hist_no_store
 setopt hist_verify
 
 # 行頭がスペースで始まるコマンドラインはヒストリに記録しない
-#setopt hist_ignore_spece
+setopt hist_ignore_space
 
 # 直前と同じコマンドラインはヒストリに追加しない
 setopt hist_ignore_dups
@@ -141,9 +169,6 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 
 # cdのタイミングで自動的にpushd
 setopt auto_pushd
-
-# check correct command
-#setopt correct
 
 # 複数の zsh を同時に使う時など history ファイルに上書きせず追加
 setopt append_history
@@ -202,5 +227,10 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
+
+# git の補完関数を早く
+autoload bashcompinit
+bashcompinit
+source $HOME/.zsh/git-completion.bash
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

@@ -4,3 +4,4 @@ refs/*
 .DS_Store
 # sass
 .sass-cache/
+.vim/vundle.git/

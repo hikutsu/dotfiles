@@ -18,8 +18,8 @@ endif
 filetype off                   " required!
 
 if has('vim_starting')
-  set rtp+=$DOTVIM/bundle/neobundle.vim/
-  call neobundle#rc($DOTVIM.'/bundle')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 " NeoBundle
 NeoBundle 'git://github.com/Shougo/neobundle.vim'
