@@ -10,9 +10,8 @@ export TERM=xterm-256color
 export LANG=ja_JP.UTF-8
 
 # パスの設定
-PATH=$HOME/bin:/usr/local/bin:$PATH
 export MANPATH=/usr/local/share/man:/usr/local/man:/usr/share/man
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # nodebrew PATH
 if [ -d $HOME/.nodebrew ]; then
@@ -34,11 +33,11 @@ find-grep () { find . -type f -print | xargs grep -n --binary-files=without-matc
 # bindkey -v
 
 # エイリアスの設定
-alias ls='ls --color=auto'
+# alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias lal="ls -l -A"
-alias vi='vim'
+# Applicationss vi='vim'
 alias r='rails'
 alias g='git'
 alias s='git status'

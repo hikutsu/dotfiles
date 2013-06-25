@@ -5,3 +5,5 @@ refs/*
 # sass
 .sass-cache/
 .vim/vundle.git/
+# sublimetext
+.sublime*
