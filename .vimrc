@@ -5,11 +5,6 @@ set nocompatible    " vimですよ
 let $TODAY = strftime('%Y%m%d')
 let $DESKTOP = expand('~/desktop')
 
-if has("win32") || has("win64")
-  let $DOTVIM = expand('~/vimfiles')
-else
-  let $DOTVIM = expand('~/.vim')
-endif
 "------------------------------------------------------------------------------
 " NeoBundle
 " Plugin 追加: .vimrc に追加して、:NeoBundleInstall
@@ -256,15 +251,6 @@ function! s:Normalize()
 endfunction
 "------------------------------------------------------------------------------
 " ユーティリティ
-" ヘルプを翻訳版に変更
-helptags $DOTVIM/doc
-set helplang=ja,en
-" タグファイル設定
-set tags=$DOTVIM/mytags
-
-if has("win32") || has("win64")
-  set tags+=$DOTVIM/mytags_win
-endif
 
 if has('path_extra')
   set tags+=tags;
@@ -306,31 +292,6 @@ if has("macunix")
   let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 endif
 "------------------------------------------------------------------------------
-" neocomplcache.vim
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_auto_completion_start_length = 2
-let g:neocomplcache_min_syntax_length = 2
-let g:neocomplcache_min_keyword_length = 2
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_underbar_completion = 1
-" スニペットファイルの置き場所
-let g:neocomplcache_snippets_dir = $DOTVIM.'/snippets'
-" スニペットを展開
-imap <expr><TAB> pumvisible() ? "\<C-n>" : neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<TAB>"
-imap <expr><CR> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<CR>"
-" スニペット編集 引数にfiletype
-command! -nargs=* Snippet NeoComplCacheEditSnippets
-" 辞書
-let g:neocomplcache_dictionary_filetype_lists = {
-  \ 'default' : '',
-  \ 'c' : $DOTVIM.'/dict/c-eglibc.dict',
-  \ 'objc' : $DOTVIM.'/dict/objectivec.dict',
-  \ 'ruby' : $DOTVIM.'/dict/ruby.dict',
-  \ 'perl' : $DOTVIM.'/dict/perl.dict',
-  \ 'css' : $DOTVIM.'/dict/css.dict',
-  \ 'javascript' : $DOTVIM.'/dict/javascript.dict',
-  \ 'actionscript' : $DOTVIM.'/dict/actionscript.dict',
-  \ }
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags

@@ -1,7 +1,9 @@
 # vim
 .vim/bundle/*
 refs/*
+# mac
 .DS_Store
+.sublime*
 # sass
 .sass-cache/
 .vim/vundle.git/
