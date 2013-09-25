@@ -38,7 +38,7 @@ NeoBundle 'https://github.com/Sixeight/unite-grep'
 NeoBundle 'https://github.com/thinca/vim-qfreplace'
 " Code completion
 NeoBundle 'https://github.com/Shougo/neocomplcache'
-NeoBundle 'https://github.com/Shougo/neocomplcache-snippets-complete'
+NeoBundle 'https://github.com/Shougo/neosnippet'
 " Reference
 NeoBundle 'https://github.com/thinca/vim-ref'
 NeoBundle 'https://github.com/mojako/ref-sources.vim'
@@ -223,6 +223,10 @@ inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
+inoremap ^[OD <Left>
+inoremap ^[OB <Down>
+inoremap ^[OA <Up>
+inoremap ^[OC <Right>
 augroup MyXML
   autocmd!
   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
