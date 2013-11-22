@@ -1,12 +1,13 @@
 [user]
 	name = Shingo Katsushima
-	email = skatsushima@aiming-inc.com
+	email = s.katsushim@gmail.com
 [color]
 	ui = auto
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/shingo.katsushima/.gitignore
 	editor = vim #-c \"set fenc=utf-8\"
 [alias]
+  br = branch
   co = checkout
   st = status
   la = log --oneline --decorate --all --graph
