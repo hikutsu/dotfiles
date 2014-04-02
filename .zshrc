@@ -7,11 +7,14 @@ compinit
 export TERM=xterm-256color
 
 # 文字コードの設定
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 
 # パスの設定
 export MANPATH=/usr/local/share/man:/usr/local/man:/usr/share/man
-PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/local/bin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # nodebrew PATH
 if [ -d $HOME/.nodebrew ]; then
@@ -230,6 +233,5 @@ bindkey "^N" history-beginning-search-forward-end
 # git の補完関数を早く
 autoload bashcompinit
 bashcompinit
-source $HOME/.zsh/git-completion.bash
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

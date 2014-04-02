@@ -11,6 +11,9 @@
   co = checkout
   st = status
   la = log --oneline --decorate --all --graph
+  log-graph = log --graph --all --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s %Cred%d%Creset'
+  log-all = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
+  logg = log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%s %Cred%d'''''''
 
 #gerit
   topic = "!sh -c 'git checkout -b $1 master' __dummy__"
