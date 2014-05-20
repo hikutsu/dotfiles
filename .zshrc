@@ -12,7 +12,7 @@ export LANG=ja_JP.UTF-8
 # パスの設定
 PATH=$HOME/bin:/usr/local/bin:$PATH
 export MANPATH=/usr/local/share/man:/usr/local/man:/usr/share/man
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+export PATH="$HOME/.rbenv/shims:$PATH"
 
 # nodebrew PATH
 if [ -d $HOME/.nodebrew ]; then
@@ -34,7 +34,6 @@ find-grep () { find . -type f -print | xargs grep -n --binary-files=without-matc
 # bindkey -v
 
 # エイリアスの設定
-alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias lal="ls -l -A"
@@ -49,10 +48,15 @@ if [ -d /usr/local/Cellar/ctags ]; then
   alias ctags="`brew --prefix`/bin/ctags"
 fi
 
+
 # brew でインストールした256色対応screen
 if [ -d /usr/local/Cellar/screen ]; then
   alias screen="`brew --prefix`/bin/screen"
 fi
+
+export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
+export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
+zstyle ':completion:*' list-colors 'di=36' 'ln=35'
 
 # tmux on Mac
 tmuxx () {
@@ -233,4 +237,4 @@ autoload bashcompinit
 bashcompinit
 source $HOME/.zsh/git-completion.bash
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
