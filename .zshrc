@@ -7,12 +7,14 @@ compinit
 export TERM=xterm-256color
 
 # 文字コードの設定
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 
 # パスの設定
-PATH=$HOME/bin:/usr/local/bin:$PATH
 export MANPATH=/usr/local/share/man:/usr/local/man:/usr/share/man
-export PATH="$HOME/.rbenv/shims:$PATH"
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/local/bin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # nodebrew PATH
 if [ -d $HOME/.nodebrew ]; then
@@ -34,10 +36,11 @@ find-grep () { find . -type f -print | xargs grep -n --binary-files=without-matc
 # bindkey -v
 
 # エイリアスの設定
+# alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias lal="ls -l -A"
-alias vi='vim'
+# Applicationss vi='vim'
 alias r='rails'
 alias g='git'
 alias s='git status'
@@ -235,6 +238,5 @@ bindkey "^N" history-beginning-search-forward-end
 # git の補完関数を早く
 autoload bashcompinit
 bashcompinit
-source $HOME/.zsh/git-completion.bash
 
 
