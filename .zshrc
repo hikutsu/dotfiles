@@ -14,7 +14,15 @@ export MANPATH=/usr/local/share/man:/usr/local/man:/usr/share/man
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/local/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
 eval "$(rbenv init -)"
+
+tig=$HOME/Binary/tig
+if [ -d "$tig" ]
+then
+  export MANPATH=$tig/share/man:$MANPATH
+  export PATH=$tig/bin:$PATH
+fi
 
 # nodebrew PATH
 if [ -d $HOME/.nodebrew ]; then

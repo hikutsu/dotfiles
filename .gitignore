@@ -10,3 +10,5 @@ refs/*
 .vim/vundle.git/
 # sublimetext
 .sublime*
+# ruby
+.ruby-version
