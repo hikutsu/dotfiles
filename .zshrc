@@ -51,10 +51,15 @@ if [ -d /usr/local/Cellar/ctags ]; then
   alias ctags="`brew --prefix`/bin/ctags"
 fi
 
+
 # brew でインストールした256色対応screen
 if [ -d /usr/local/Cellar/screen ]; then
   alias screen="`brew --prefix`/bin/screen"
 fi
+
+export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
+export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
+zstyle ':completion:*' list-colors 'di=36' 'ln=35'
 
 # tmux on Mac
 tmuxx () {

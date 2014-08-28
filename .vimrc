@@ -48,7 +48,6 @@ NeoBundle 'trinity.vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'https://github.com/scrooloose/nerdtree'
 " Lint
-NeoBundle 'https://github.com/scrooloose/syntastic'
 NeoBundle 'https://github.com/basyura/jslint.vim'
 " Other plugins
 NeoBundle 'https://github.com/tpope/vim-rails'
@@ -249,7 +248,8 @@ function! s:Normalize()
   set ff=unix
   set fenc=utf-8
   try
-    %s///g
+    %s/
+//g
   catch
   endtry
 endfunction
