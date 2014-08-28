@@ -4,7 +4,7 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = /Users/shingo.katsushima/.gitignore
+	excludesfile = ~/.gitignore
 	editor = vim #-c \"set fenc=utf-8\"
 [alias]
   br = branch

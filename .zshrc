@@ -150,6 +150,16 @@ case ${UID} in
   ;;
 esac
 
+# Setup ssh-agent
+if [ -f ~/.ssh-agent ]; then
+  . ~/.ssh-agent
+fi
+if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
+  ssh-agent > ~/.ssh-agent
+  . ~/.ssh-agent
+fi
+ssh-add -l >& /dev/null || ssh-add
+
 # 補完設定
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
@@ -246,5 +256,3 @@ bindkey "^N" history-beginning-search-forward-end
 # git の補完関数を早く
 autoload bashcompinit
 bashcompinit
-
-
