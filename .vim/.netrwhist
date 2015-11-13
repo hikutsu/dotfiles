@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/shingo-katsushima/dotfiles'
 let g:netrw_dirhist_2='/home/shingo-katsushima/xgree/ffr/frontend/ffr/config'
 let g:netrw_dirhist_3='/home/shingo-katsushima/xgree/ffr/frontend/ffr/data/scss/members'
+let g:netrw_dirhist_4='/Users/katsusin/mac-provisioning'
